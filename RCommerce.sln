@@ -11,9 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{2A46DD7D-8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{ACA5434B-6120-4411-8EC6-AA8E80CB5974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.Module.Authentication", "modules\RCommerce.Module.Authentication\RCommerce.Module.Authentication.csproj", "{0E4E3F99-BE9F-41FF-BA63-FF860DEF230A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Module.Authentication", "modules\RCommerce.Module.Authentication\RCommerce.Module.Authentication.csproj", "{0E4E3F99-BE9F-41FF-BA63-FF860DEF230A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.AppHost", "hosts\RCommerce.AppHost\RCommerce.AppHost.csproj", "{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Module.Core", "modules\RCommerce.Module.Core\RCommerce.Module.Core.csproj", "{C5D92554-7671-4596-A26C-238C6195759D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.BuildManager", "libs\RCommerce.BuildManager\RCommerce.BuildManager.csproj", "{A7833A66-135D-4F1E-9839-160FE2D2D729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D92554-7671-4596-A26C-238C6195759D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D92554-7671-4596-A26C-238C6195759D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D92554-7671-4596-A26C-238C6195759D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D92554-7671-4596-A26C-238C6195759D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7833A66-135D-4F1E-9839-160FE2D2D729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7833A66-135D-4F1E-9839-160FE2D2D729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7833A66-135D-4F1E-9839-160FE2D2D729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7833A66-135D-4F1E-9839-160FE2D2D729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +53,8 @@ Global
 		{4007947E-4A27-488F-B9BA-7056BCADD090} = {2A46DD7D-8B23-479B-8629-36C5B05D99C9}
 		{0E4E3F99-BE9F-41FF-BA63-FF860DEF230A} = {ACA5434B-6120-4411-8EC6-AA8E80CB5974}
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5} = {7C186FD7-D48A-454B-9119-1DD779802D22}
+		{C5D92554-7671-4596-A26C-238C6195759D} = {ACA5434B-6120-4411-8EC6-AA8E80CB5974}
+		{A7833A66-135D-4F1E-9839-160FE2D2D729} = {2A46DD7D-8B23-479B-8629-36C5B05D99C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0339E31-C05E-40B3-842F-698BD8056728}
