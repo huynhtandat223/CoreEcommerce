@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="robocopy $(ProjectDir)ClientApp\src $(SolutionDir)hosts\RCommerce.AppHost\ClientApp\src&#xD;&#xA;        if errorlevel 4 goto BuildEventFailed&#xD;&#xA;        if errorlevel 0 goto end&#xD;&#xA;        :BuildEventFailed echo FILECOPY for $(ProjectName) FAILED&#xD;&#xA;        exit 1&#xD;&#xA;        :end echo FILECOPY for $(ProjectName) COMPLETED OK&#xD;&#xA;        exit 0" />
+  </Target>
+
+</Project>
