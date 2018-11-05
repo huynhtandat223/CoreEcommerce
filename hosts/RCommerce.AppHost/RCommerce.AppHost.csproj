@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <Compile Remove="%2a%2a\**" />
+    <Compile Remove="ClientApp\**" />
     <Content Remove="%2a%2a\**" />
+    <Content Remove="ClientApp\**" />
     <EmbeddedResource Remove="%2a%2a\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
     <None Remove="%2a%2a\**" />
+    <None Remove="ClientApp\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,12 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\dist\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\modules\RCommerce.Module.Authentication\RCommerce.Module.Authentication.csproj" />
     <ProjectReference Include="..\..\modules\RCommerce.Module.Core\RCommerce.Module.Core.csproj" />
+    <ProjectReference Include="..\..\modules\RCommerce.Module.Products\RCommerce.Module.Products.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

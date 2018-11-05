@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.mg-top-20{
+    margin-top: 20px;
+}
+
+#product-detail-container > kendo-tabstrip > .k-content[role="tabpanel"]{
+    overflow: hidden;
+}

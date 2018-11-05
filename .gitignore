@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /RCommerce.BuildManager.dll
+/hosts/RCommerce.AppHost/ClientApp/src/modules
