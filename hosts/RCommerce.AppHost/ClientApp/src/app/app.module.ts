@@ -12,8 +12,8 @@ import {HomeComponent} from "./pages/home/home.component";
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpErrorHandler }     from './http-error-handler.service';
-import { MessageService }       from './message.service';
+import { HttpErrorHandler }     from './services/http-error-handler.service';
+import { MessageService }       from './services//message.service';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 
@@ -29,7 +29,7 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
     GridModule, HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
