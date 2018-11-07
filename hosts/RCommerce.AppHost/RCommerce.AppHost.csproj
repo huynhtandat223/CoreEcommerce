@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\modules\RCommerce.Module.Authentication\RCommerce.Module.Authentication.csproj" />
     <ProjectReference Include="..\..\modules\RCommerce.Module.Core\RCommerce.Module.Core.csproj" />
     <ProjectReference Include="..\..\modules\RCommerce.Module.Products\RCommerce.Module.Products.csproj" />
   </ItemGroup>

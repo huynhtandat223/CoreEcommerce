@@ -2,19 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
-    <OutputType>Library</OutputType>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="%2a%2a\**" />
-    <Compile Remove="ClientApp\**" />
-    <Content Remove="%2a%2a\**" />
-    <Content Remove="ClientApp\**" />
-    <EmbeddedResource Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="ClientApp\**" />
-    <None Remove="%2a%2a\**" />
-    <None Remove="ClientApp\**" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
