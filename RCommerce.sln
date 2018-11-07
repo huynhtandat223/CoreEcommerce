@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructures.RepositoryE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.Module.Customers", "modules\RCommerce.Module.Customers\RCommerce.Module.Customers.csproj", "{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{299F1802-70E2-4ECB-A4E4-C543707A4833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.Tools.CopyModules", "tools\RCommerce.Tools.CopyModules\RCommerce.Tools.CopyModules.csproj", "{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +84,7 @@ Global
 		{EDC9D2EE-F4FC-4925-9A86-C94BB7DD739A} = {ACA5434B-6120-4411-8EC6-AA8E80CB5974}
 		{012FE2E5-848B-4E2B-9925-CEDD60F0A6B6} = {2A46DD7D-8B23-479B-8629-36C5B05D99C9}
 		{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE} = {ACA5434B-6120-4411-8EC6-AA8E80CB5974}
+		{B2ADE848-5995-4C2E-94BC-1B24BDF1148A} = {299F1802-70E2-4ECB-A4E4-C543707A4833}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0339E31-C05E-40B3-842F-698BD8056728}
