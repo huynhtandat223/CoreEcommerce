@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../../../services/base.service';
-import { HttpErrorHandler } from '../../../services/http-error-handler.service';
+import { BaseService } from '../../services/base.service';
+import { HttpErrorHandler } from '../../services/http-error-handler.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

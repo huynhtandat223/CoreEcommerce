@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpErrorHandler } from '../../../services/http-error-handler.service';
-import { BaseService } from '../../../services/base.service';
+import { HttpErrorHandler } from '../../services/http-error-handler.service';
+import { BaseService } from '../../services/base.service';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { preProcess } from '../../../services/api.preprocess';
+import { preProcess } from '../../services/api.preprocess';
 
 @Injectable({
   providedIn: 'root'

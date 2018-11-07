@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace RCommerce.Module.Authentication
+namespace RCommerce.Module.Core
 {
     public class Program
     {
@@ -11,7 +11,7 @@ namespace RCommerce.Module.Authentication
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<RCommerce.Module.Core.Startup>();
+           WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }
