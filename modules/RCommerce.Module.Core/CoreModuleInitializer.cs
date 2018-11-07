@@ -11,7 +11,6 @@ namespace RCommerce.Module.Core
     {
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            throw new NotImplementedException();
         }
 
         public IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)

@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hosts", "hosts", "{7C186FD7-D48A-454B-9119-1DD779802D22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCoreInfrastructures", "libs\EfCoreInfrastructures\EfCoreInfrastructures.csproj", "{4007947E-4A27-488F-B9BA-7056BCADD090}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{2A46DD7D-8B23-479B-8629-36C5B05D99C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{ACA5434B-6120-4411-8EC6-AA8E80CB5974}"
@@ -21,13 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Module.Products",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Module.Authentication", "modules\RCommerce.Module.Authentication\RCommerce.Module.Authentication.csproj", "{EDC9D2EE-F4FC-4925-9A86-C94BB7DD739A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructures.RepositoryEntities", "libs\Infrastructures.RepositoryEntities\Infrastructures.RepositoryEntities.csproj", "{012FE2E5-848B-4E2B-9925-CEDD60F0A6B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructures.RepositoryEntities", "libs\Infrastructures.RepositoryEntities\Infrastructures.RepositoryEntities.csproj", "{012FE2E5-848B-4E2B-9925-CEDD60F0A6B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.Module.Customers", "modules\RCommerce.Module.Customers\RCommerce.Module.Customers.csproj", "{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Module.Customers", "modules\RCommerce.Module.Customers\RCommerce.Module.Customers.csproj", "{BBF2D00B-FB7E-4BE1-891D-CCBD8EA7E2CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{299F1802-70E2-4ECB-A4E4-C543707A4833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.Tools.CopyModules", "tools\RCommerce.Tools.CopyModules\RCommerce.Tools.CopyModules.csproj", "{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Tools.CopyModules", "tools\RCommerce.Tools.CopyModules\RCommerce.Tools.CopyModules.csproj", "{B2ADE848-5995-4C2E-94BC-1B24BDF1148A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4007947E-4A27-488F-B9BA-7056BCADD090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4007947E-4A27-488F-B9BA-7056BCADD090}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4007947E-4A27-488F-B9BA-7056BCADD090}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4007947E-4A27-488F-B9BA-7056BCADD090}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,7 +70,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4007947E-4A27-488F-B9BA-7056BCADD090} = {2A46DD7D-8B23-479B-8629-36C5B05D99C9}
 		{0AA7D137-501D-4A0E-A130-B9244ACFEDD5} = {7C186FD7-D48A-454B-9119-1DD779802D22}
 		{C5D92554-7671-4596-A26C-238C6195759D} = {ACA5434B-6120-4411-8EC6-AA8E80CB5974}
 		{A7833A66-135D-4F1E-9839-160FE2D2D729} = {2A46DD7D-8B23-479B-8629-36C5B05D99C9}

@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNet.OData.Builder;
+using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OData.Edm;
 using RCommerce.Module.Core.Extensions;
-using Swashbuckle.AspNetCore.Swagger;
+using RCommerce.Module.Core.Modules;
 
 namespace RCommerce.Module.Core
 {
@@ -26,7 +30,10 @@ namespace RCommerce.Module.Core
             services.AddModules(_hostingEnvironment.ContentRootPath);
             
             services.AddCustomizedDataStore(_configuration);
-            
+            services.AddCors();
+            services.AddAutoMapper();
+            services.AddCustomizedMvc(GlobalConfiguration.Modules);
+
             var sp = services.BuildServiceProvider();
             var moduleInitializers = sp.GetServices<IModuleInitializer>();
             foreach (var moduleInitializer in moduleInitializers)
@@ -34,48 +41,59 @@ namespace RCommerce.Module.Core
                 moduleInitializer.ConfigureServices(services, _configuration);
             }
             
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Root Ecommerce API", Version = "v1" });
-            });
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/dist";
+            //});
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
+                        .AllowAnyOrigin().AllowCredentials());
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseMvc();
-            app.UseSpa(spa =>
+            app.UseMvc(b =>
             {
-                spa.Options.SourcePath = "ClientApp";
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Root Ecommerce API V1");
+                b.Select().Expand().Filter().OrderBy().MaxTop(100).Count();
+                b.MapODataServiceRoute("odata", "odata", GetEdmModel(app));
             });
 
+            //app.UseHttpsRedirection();
+            //app.UseStaticFiles();
+            //app.UseSpaStaticFiles();
+            //app.UseHttpsRedirection();
+            //app.UseAuthentication();
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
+            //});
+            
             var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
             foreach (var moduleInitializer in moduleInitializers)
             {
                 moduleInitializer.Configure(app, env);
             }
             
+        }
+        private static IEdmModel GetEdmModel(IApplicationBuilder app)
+        {
+            var builder = new ODataConventionModelBuilder();
+            var odataCustomModelBuilders = app.ApplicationServices.GetServices<IODataCustomModelBuilder>();
+            foreach (var item in odataCustomModelBuilders)
+            {
+                item.RegistEntities(builder);
+            }
+            return builder.GetEdmModel();
         }
     }
 }

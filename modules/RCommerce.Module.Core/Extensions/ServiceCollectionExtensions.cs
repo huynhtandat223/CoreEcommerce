@@ -1,16 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using RCommerce.Module.Core.Data;
 using RCommerce.Module.Core.Entities;
 using RCommerce.Module.Core.Modules;
-using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Loader;
 
 namespace RCommerce.Module.Core.Extensions
 {
@@ -31,11 +29,24 @@ namespace RCommerce.Module.Core.Extensions
             {
                 GlobalConfiguration.Modules.Add(module);
                 RegisterModuleInitializerServices(module, ref services);
+
             }
 
             return services;
         }
+        public static IServiceCollection AddCustomizedMvc(this IServiceCollection services, IList<ModuleInfo> modules)
+        {
+            services.AddOData();
+            var mvcBuilder = services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            foreach (var module in modules)
+            {
+                mvcBuilder.AddApplicationPart(module.Assembly);
+            }
+
+            return services;
+        }
         private static void RegisterModuleInitializerServices(ModuleInfo module, ref IServiceCollection services)
         {
             var moduleInitializerType = module.Assembly.GetTypes()
@@ -43,6 +54,12 @@ namespace RCommerce.Module.Core.Extensions
             if ((moduleInitializerType != null) && (moduleInitializerType != typeof(IModuleInitializer)))
             {
                 services.AddSingleton(typeof(IModuleInitializer), moduleInitializerType);
+            }
+
+            var odataCustomModelBuilderType = module.Assembly.GetTypes().FirstOrDefault(x => typeof(IODataCustomModelBuilder).IsAssignableFrom(x));
+            if ((odataCustomModelBuilderType != null) && (odataCustomModelBuilderType != typeof(IODataCustomModelBuilder)))
+            {
+                services.AddSingleton(typeof(IODataCustomModelBuilder), odataCustomModelBuilderType);
             }
         }
     }

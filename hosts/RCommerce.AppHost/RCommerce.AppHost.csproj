@@ -24,11 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\RCommerce.Module.Authentication\RCommerce.Module.Authentication.csproj" />
     <ProjectReference Include="..\..\modules\RCommerce.Module.Core\RCommerce.Module.Core.csproj" />
+    <ProjectReference Include="..\..\modules\RCommerce.Module.Customers\RCommerce.Module.Customers.csproj" />
     <ProjectReference Include="..\..\modules\RCommerce.Module.Products\RCommerce.Module.Products.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet &quot;$(SolutionDir)build\RCommerce.BuildManager.dll&quot; $(TargetDir) $(SolutionDir) $(ProjectDir)" />
+    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)" />
   </Target>
 </Project>

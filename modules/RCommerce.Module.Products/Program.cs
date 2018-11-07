@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace RCommerce.AppHost
+namespace RCommerce.Module.Products
 {
     public class Program
     {
