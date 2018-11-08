@@ -25,7 +25,7 @@ namespace RCommerce.Module.Authentication
     {
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
+            app.UseAuthentication();
         }
 
         public IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
