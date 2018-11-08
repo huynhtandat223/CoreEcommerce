@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RCommerce.Module.Core.Data
 {
@@ -29,7 +31,17 @@ namespace RCommerce.Module.Core.Data
 
             RegisterCustomMappings(builder, typeToRegisters);
         }
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            //ValidateEntities();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
 
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            //ValidateEntities();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
         private static void RegisterConvention(ModelBuilder modelBuilder)
         {
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
@@ -50,7 +62,7 @@ namespace RCommerce.Module.Core.Data
 
         private static void RegisterEntities(ModelBuilder modelBuilder, IEnumerable<Type> typeToRegisters)
         {
-            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(EntityBaseWithTypedId<>)) && !x.GetTypeInfo().IsAbstract);
+            var entityTypes = typeToRegisters.Where(x => x.GetTypeInfo().IsSubclassOf(typeof(EntityBase)) && !x.GetTypeInfo().IsAbstract);
             foreach (var type in entityTypes)
             {
                 modelBuilder.Entity(type);
