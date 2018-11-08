@@ -1,6 +1,7 @@
 import {HomeComponent} from "./pages/home/home.component";
+import { moduleRoutes } from "./module.routes";
 
-export const appRoutes=[
+const defaultRoutes = [
     {
         path:'',
         redirectTo:'home',
@@ -10,4 +11,6 @@ export const appRoutes=[
         path: 'home',
         component: HomeComponent
     }
-];
+]
+
+export const appRoutes= [...defaultRoutes, moduleRoutes];
