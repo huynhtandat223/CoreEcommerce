@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RCommerce.Module.Authentication.Data;
+using RCommerce.Module.Authentication.Services;
 using RCommerce.Module.Authentication.Stores;
 using RCommerce.Module.Core;
 using RCommerce.Module.Customers.Models;
@@ -29,6 +30,8 @@ namespace RCommerce.Module.Authentication
 
         public IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddTransient<ITokenService, TokenService>();
+
             services.AddDbContextPool<AuthDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AuthConnection"),
                     b => b.MigrationsAssembly("RCommerce.Module.Authentication")));
@@ -51,8 +54,8 @@ namespace RCommerce.Module.Authentication
                 .AddCookie()
                 .AddFacebook(x =>
                 {
-                    x.AppId = "1716532045292977";
-                    x.AppSecret = "dfece01ae919b7b8af23f962a1f87f95";
+                    x.AppId = configuration["Authentication:Facebook:AppId"];
+                    x.AppSecret = configuration["Authentication:Facebook:AppSecret"];
 
                     x.Events = new OAuthEvents
                     {
@@ -61,8 +64,8 @@ namespace RCommerce.Module.Authentication
                 })
                 .AddGoogle(x =>
                 {
-                    x.ClientId = "583825788849-8g42lum4trd5g3319go0iqt6pn30gqlq.apps.googleusercontent.com";
-                    x.ClientSecret = "X8xIiuNEUjEYfiEfiNrWOfI4";
+                    x.ClientId = configuration["Authentication:Google:ClientId"];
+                    x.ClientSecret = configuration["Authentication:Google:ClientSecret"];
                     x.Events = new OAuthEvents
                     {
                         OnRemoteFailure = ctx => HandleRemoteLoginFailure(ctx)
@@ -76,8 +79,8 @@ namespace RCommerce.Module.Authentication
                         ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = configuration["Jwt:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+                        ValidIssuer = configuration["Authentication:Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Authentication:Jwt:Key"]))
                     };
                 });
             services.ConfigureApplicationCookie(x =>

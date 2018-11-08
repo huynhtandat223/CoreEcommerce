@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Infrastructures.RepositoryEntities.Data;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -33,6 +34,9 @@ namespace RCommerce.Module.Core
             services.AddCors();
             services.AddAutoMapper();
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
+
+            //services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddTransient(typeof(IRepositoryWithTypedId<,>), typeof(RepositoryWithTypedId<,>));
 
             var sp = services.BuildServiceProvider();
             var moduleInitializers = sp.GetServices<IModuleInitializer>();
