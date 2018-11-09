@@ -6,44 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ClientApp\**" />
-    <Content Remove="ClientApp\**" />
-    <EmbeddedResource Remove="ClientApp\**" />
-    <None Remove="ClientApp\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ClientApp\angular.json" />
-    <Content Include="ClientApp\e2e\tsconfig.e2e.json" />
-    <Content Include="ClientApp\package-lock.json" />
-    <Content Include="ClientApp\package.json" />
-    <Content Include="ClientApp\src\app\app.component.html" />
-    <Content Include="ClientApp\src\app\home\home.component.html" />
-    <Content Include="ClientApp\src\app\login\login.component.css" />
-    <Content Include="ClientApp\src\app\login\login.component.html" />
-    <Content Include="ClientApp\src\favicon.ico" />
-    <Content Include="ClientApp\src\index.html" />
-    <Content Include="ClientApp\src\styles.css" />
-    <Content Include="ClientApp\src\tsconfig.app.json" />
-    <Content Include="ClientApp\src\tsconfig.spec.json" />
-    <Content Include="ClientApp\src\tslint.json" />
-    <Content Include="ClientApp\tsconfig.json" />
-    <Content Include="ClientApp\tslint.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ClientApp\.editorconfig" />
-    <None Include="ClientApp\.gitignore" />
-    <None Include="ClientApp\e2e\protractor.conf.js" />
-    <None Include="ClientApp\README.md" />
-    <None Include="ClientApp\src\assets\.gitkeep" />
-    <None Include="ClientApp\src\browserslist" />
-    <None Include="ClientApp\src\karma.conf.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,41 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\e2e\src\app.e2e-spec.ts" />
-    <TypeScriptCompile Include="ClientApp\e2e\src\app.po.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.routing.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\home\home.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\home\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\login\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_guards\auth.guard.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_guards\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_helpers\error.interceptor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_helpers\fake-backend.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_helpers\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_helpers\jwt.interceptor.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_models\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_models\user.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_services\authentication.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_services\index.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\_services\user.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />
-    <TypeScriptCompile Include="ClientApp\src\main.ts" />
-    <TypeScriptCompile Include="ClientApp\src\polyfills.ts" />
-    <TypeScriptCompile Include="ClientApp\src\test.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\dist\out-tsc\e2e\src\" />
-    <Folder Include="ClientApp\dist\out-tsc\src\app\" />
-    <Folder Include="ClientApp\dist\out-tsc\src\environments\" />
+    <Folder Include="ClientApp\src\app\authentication\_helpers\" />
+    <Folder Include="ClientApp\src\app\authentication\_services\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)" />
+    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)&#xD;&#xA;dotnet &quot;$(SolutionDir)tools\copytemplate\RCommerce.Tools.CopyTemplate.dll&quot; $(SolutionDir) $(ProjectDir)" />
   </Target>
 
 </Project>

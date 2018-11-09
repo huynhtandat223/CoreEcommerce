@@ -28,7 +28,7 @@ namespace RCommerce.Tools.GenerateRoutingModules
                     //Copy all the files & Replaces any files with the same name
                     foreach (string newPath in Directory.GetFiles(clientAppPath, "*.*",
                         SearchOption.AllDirectories))
-                        File.Copy(newPath, newPath.Replace(clientAppPath, currentProjectClientAppPath), false);
+                        File.Copy(newPath, newPath.Replace(clientAppPath, currentProjectClientAppPath), true);
                 }
             });
         }

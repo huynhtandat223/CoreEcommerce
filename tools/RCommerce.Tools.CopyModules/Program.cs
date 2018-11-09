@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +21,8 @@ namespace RCommerce.Tools.CopyModules
                 var src = Path.Combine(targetDir, moduleName);
                 File.Copy(src, desc, true);
             });
+
+
         }
     }
 }
