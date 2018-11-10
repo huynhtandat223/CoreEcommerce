@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\dathuynht\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\dathuynht\\.nuget\\packages",
+      "C:\\Users\\kaka3\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\kaka3\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }

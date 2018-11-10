@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\_shared\appshared.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
   </ItemGroup>
@@ -22,8 +26,12 @@
     <ProjectReference Include="..\RCommerce.Module.Core\RCommerce.Module.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\appshared.service.ts" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)&#xD;&#xA;dotnet &quot;$(SolutionDir)tools\copytemplate\RCommerce.Tools.CopyTemplate.dll&quot; $(SolutionDir) $(ProjectDir)" />
+    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)" />
   </Target>
 
 </Project>

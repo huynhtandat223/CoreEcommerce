@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {smoothlyMenu} from "../../app.helpers";
 import { Router, ActivatedRoute } from '@angular/router';
+import { AppSharedService } from 'src/app/_shared/appshared.service';
 
 @Component({
     selector: 'topnavbar',
@@ -8,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class Topnavbar {
     returnUrlParam: string;
-    constructor(private router: Router, private activatedRoute: ActivatedRoute){
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private appSharedService: AppSharedService){
         this.activatedRoute.queryParams.subscribe(params => {
             this.returnUrlParam = params['returnUrl'];
         });
@@ -21,8 +22,9 @@ export class Topnavbar {
         jQuery("body").toggleClass("mini-navbar");
         smoothlyMenu();
     }
-    logout() {
-        localStorage.clear();
+  logout() {
+    this.appSharedService.logout();
+      this.router.navigate(['/authentication/login']);
     }
 
     enableBackButton(){

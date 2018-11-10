@@ -17,6 +17,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { AppLoadService } from './services/appload.service';
 import { AuthGuard } from '../_shared/AuthGuard';
+import { AppSharedService } from '../_shared/appshared.service';
 
 const appRoutes: Route[] = [
   {
@@ -47,7 +48,7 @@ export function init_app(appLoadService: AppLoadService){
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    RouterModule.forRoot(appRoutes),
     GridModule, HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -57,7 +58,9 @@ export function init_app(appLoadService: AppLoadService){
     AppLoadService,
     { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppLoadService], multi: true },
     HttpErrorHandler,
-    MessageService],
+    MessageService,
+    AppSharedService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

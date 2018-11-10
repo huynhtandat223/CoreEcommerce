@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RCommerce.Module.Core.ActionFilters;
 using RCommerce.Module.Core.Data;
 using RCommerce.Module.Core.Entities;
 using RCommerce.Module.Core.Modules;
@@ -37,8 +38,9 @@ namespace RCommerce.Module.Core.Extensions
         public static IServiceCollection AddCustomizedMvc(this IServiceCollection services, IList<ModuleInfo> modules)
         {
             services.AddOData();
-            var mvcBuilder = services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var mvcBuilder = services.AddMvc(options => {
+                options.Filters.Add(typeof(ValidateModelAttribute));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             foreach (var module in modules)
             {

@@ -6,7 +6,11 @@ import {Router} from "@angular/router";
     templateUrl: './navigation.component.html'
 })
 export class Navigation implements OnInit {
-    @Input() loginInfo: any;
+  loginInfo: any = {
+    first_name: '',
+    last_name: '',
+    title:''
+  };
 
     links = [
         {routeLink: "products/categories", text: "Categories"},

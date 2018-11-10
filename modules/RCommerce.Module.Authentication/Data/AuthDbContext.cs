@@ -53,6 +53,19 @@ namespace RCommerce.Module.Authentication.Data
                 b.ToTable("Auth_UserToken");
             });
 
+            builder.Entity<User>().HasData(
+            new User
+            {
+                Id = 1,
+                UserName = "test", NormalizedUserName = "Test",
+                PasswordHash = "AQAAAAEAACcQAAAAEKp3tc2bVoEMZH0GQiVDAXMrV1oSb9WhJXzF4GqjvQTh0STjbhCxCbRWC9YVSyEEFg==",
+                SecurityStamp = "KKZPWRI3KW74LDJLAOILTVHAO2D5PWNP", ConcurrencyStamp = "3fb3af08-4b66-4bf5-91a7-619f84cf121e",
+                LockoutEnabled = true
+
+
+            }
+        );
+
         }
     }
 }
