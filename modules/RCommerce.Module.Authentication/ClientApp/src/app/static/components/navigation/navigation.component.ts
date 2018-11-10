@@ -1,9 +1,5 @@
-/**
- * Created by andrew.yang on 2/6/2017.
- */
 import {Component, OnInit, Input} from '@angular/core';
 import {Router} from "@angular/router";
-import { appContext } from '../../../_shared/appContext';
 
 @Component({
     selector: 'navigation',
@@ -21,7 +17,6 @@ export class Navigation implements OnInit {
     constructor( private router: Router) { }
 
     ngOnInit() { 
-        //console.log(appContext);
     }
     activeRoute(routename: string): boolean{
         return this.router.url.indexOf(routename) > -1;
