@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {Topnavbar} from "./components/topnavbar/topnavbar.component";
 import {Navigation} from "./components/navigation/navigation.component";
-import {RouterModule} from "@angular/router";
+import {RouterModule, Route} from "@angular/router";
 import {HomeComponent} from "./pages/home/home.component";
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,16 +16,19 @@ import { MessageService } from './services//message.service';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { AppLoadService } from './services/appload.service';
+import { AuthGuard } from '../_shared/AuthGuard';
 
-const appRoutes = [
+const appRoutes: Route[] = [
   {
       path:'',
       redirectTo:'home',
-      pathMatch:'full'
+      pathMatch:'full',
+      
   },
   {
       path: 'home',
-      component: HomeComponent
+      component: HomeComponent,
+      canActivate: [AuthGuard]
   }
 ]
 
@@ -44,7 +47,7 @@ export function init_app(appLoadService: AppLoadService){
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {enableTracing: true}),
     GridModule, HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,

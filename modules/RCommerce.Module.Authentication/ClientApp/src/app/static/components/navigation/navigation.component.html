@@ -20,14 +20,8 @@
                     SWWCC
                 </div>
             </li>
-            <li [ngClass]="{active: activeRoute('products/categories')}">
-                <a [routerLink]="['./products/categories']"><i class="fa fa-desktop"></i> <span class="nav-label">Categories</span></a>
-            </li>
-            <li [ngClass]="{active: activeRoute('products/productoptions')}">
-                <a [routerLink]="['./products/productoptions']"><i class="fa fa-desktop"></i> <span class="nav-label">Product Options</span></a>
-            </li>
-            <li [ngClass]="{active: activeRoute('products/products')}">
-                <a [routerLink]="['./products/products']"><i class="fa fa-desktop"></i> <span class="nav-label">Products</span></a>
+            <li *ngFor="let link of links">
+                <a [routerLink]="[link.routeLink]"><i class="fa fa-desktop"></i> <span class="nav-label">{{link.text}}</span></a>
             </li>
         </ul>
 

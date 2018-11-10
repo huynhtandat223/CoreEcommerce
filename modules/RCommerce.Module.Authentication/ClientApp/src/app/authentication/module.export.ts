@@ -5,5 +5,5 @@ export const moduleRoutes: Route[] = [
       path: 'authentication',
       loadChildren: '../authentication/authentication.module#AuthenticationModule',
     }
-  ];
+];
 
