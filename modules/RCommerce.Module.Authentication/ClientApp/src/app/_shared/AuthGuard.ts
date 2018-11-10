@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import * as Foo from '../authentication/_guards';
+import * as AuthenticationGuard from '../authentication/_guards';
 import { AppSharedService } from './appshared.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard extends Foo.AuthGuard {
+export class AuthGuard extends AuthenticationGuard.AuthGuard {
 
   constructor(router: Router, appSharedService: AppSharedService){
     super(router, appSharedService);
