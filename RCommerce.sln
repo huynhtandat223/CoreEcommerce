@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Tools.CopyModules
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Tools.GenerateRoutingModules", "tools\RCommerce.Tools.GenerateRoutingModules\RCommerce.Tools.GenerateRoutingModules.csproj", "{1EB4E045-7DB8-4AAE-BCDC-882B7D384745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCommerce.Tools.CopyTemplate", "tools\RCommerce.Tools.CopyTemplate\RCommerce.Tools.CopyTemplate.csproj", "{48222EFF-F8A3-44A3-9629-1B3EF2A2F909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCommerce.Tools.CopyTemplate", "tools\RCommerce.Tools.CopyTemplate\RCommerce.Tools.CopyTemplate.csproj", "{48222EFF-F8A3-44A3-9629-1B3EF2A2F909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

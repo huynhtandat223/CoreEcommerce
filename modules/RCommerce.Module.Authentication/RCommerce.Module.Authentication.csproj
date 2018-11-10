@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="%2a%2a\**" />
+    <Content Remove="%2a%2a\**" />
+    <EmbeddedResource Remove="%2a%2a\**" />
+    <None Remove="%2a%2a\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
   </ItemGroup>
@@ -13,11 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\libs\Infrastructures.RepositoryEntities\Infrastructures.RepositoryEntities.csproj" />
     <ProjectReference Include="..\RCommerce.Module.Core\RCommerce.Module.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\authentication\_helpers\" />
-    <Folder Include="ClientApp\src\app\authentication\_services\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

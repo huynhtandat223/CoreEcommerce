@@ -3,7 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({

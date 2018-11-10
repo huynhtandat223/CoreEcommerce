@@ -1,22 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {Topnavbar} from "./components/topnavbar/topnavbar.component";
 import {Navigation} from "./components/navigation/navigation.component";
 import {RouterModule} from "@angular/router";
-import { appRoutes } from "./app.routes";
 import {HomeComponent} from "./pages/home/home.component";
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpErrorHandler }     from './services/http-error-handler.service';
-import { MessageService }       from './services//message.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpErrorHandler } from './services/http-error-handler.service';
+import { MessageService } from './services//message.service';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
-import { ErrorInterceptor, JwtInterceptor, fakeBackendProvider } from './authentication/_helpers';
+
+const appRoutes = [
+  {
+      path:'',
+      redirectTo:'home',
+      pathMatch:'full'
+  },
+  {
+      path: 'home',
+      component: HomeComponent
+  }
+]
 
 @NgModule({
   declarations: [
@@ -27,21 +37,15 @@ import { ErrorInterceptor, JwtInterceptor, fakeBackendProvider } from './authent
   ],
   imports: [
     BrowserModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    RouterModule.forRoot(appRoutes , { enableTracing: true }),
     GridModule, HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
     TreeViewModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    fakeBackendProvider,
-    HttpErrorHandler,
+  providers: [HttpErrorHandler,
     MessageService],
   bootstrap: [AppComponent]
 })
