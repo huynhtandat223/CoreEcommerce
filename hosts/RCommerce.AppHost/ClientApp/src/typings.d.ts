@@ -4,3 +4,7 @@ interface NodeModule {
   id: string;
 }
 declare var jQuery: any;
+declare module "*.json" {
+  const value: any;
+  export default value;
+}

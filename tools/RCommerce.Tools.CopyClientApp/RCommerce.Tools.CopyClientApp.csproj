@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="robocopy $(TargetDir) $(SolutionDir)\tools\copyclientapp  *.dll *.json /XO /NJH /NP&#xD;&#xA;if errorlevel 4 goto BuildEventFailed&#xD;&#xA;if errorlevel 0 goto end&#xD;&#xA;:BuildEventFailed echo FILECOPY for $(ProjectName) FAILED&#xD;&#xA;exit 1&#xD;&#xA;:end echo FILECOPY for $(ProjectName) COMPLETED OK&#xD;&#xA;exit 0" />
+  </Target>
+
+</Project>

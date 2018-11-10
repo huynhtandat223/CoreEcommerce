@@ -31,6 +31,6 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)" />
+    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)&#xD;&#xA;dotnet &quot;$(SolutionDir)tools\copyclientapp\RCommerce.Tools.CopyClientApp.dll&quot; $(ProjectDir) $(SolutionDir)" />
   </Target>
 </Project>
