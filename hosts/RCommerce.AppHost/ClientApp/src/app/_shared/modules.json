@@ -1,7 +1,0 @@
-{
-    "modules": [
-        { 
-            "name": "AuthenticationModule","folderName": "authentication"
-        }
-    ]
-}

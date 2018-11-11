@@ -1,0 +1,10 @@
+{
+    "modules": [
+        { 
+            "name": "AuthenticationModule","folderName": "authentication"
+        },
+        { 
+            "name": "ProductsModule","folderName": "products"
+        }
+    ]
+}

@@ -7,7 +7,8 @@ export class AppLoadService {
 
     initializeApp(): Promise<any>{
         const router = this.injector.get(Router);
-        return import('../../_shared/modules.json')
+        console.log('abc');
+        return import('../../_internal/module.json')
             .then((jsonData) => {
                 let { modules } = jsonData.default;
 

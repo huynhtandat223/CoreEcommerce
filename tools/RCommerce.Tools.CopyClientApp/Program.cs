@@ -16,12 +16,7 @@ namespace RCommerce.Tools.CopyClientApp
             startInfo.Arguments = $"{src} {desc} /XO /NJH /NP /e /xd {string.Join(" ", exludeDirs)}";
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
-            //startInfo.RedirectStandardError = true;
-            //startInfo.RedirectStandardOutput = true;
             Process p = Process.Start(startInfo);
-            //Console.WriteLine(p.StandardError.ReadToEnd());
-            //Console.WriteLine(p.StandardOutput.ReadToEnd());
-
             while (!p.HasExited)
             {
                 System.Threading.Thread.Sleep(500);
@@ -77,7 +72,7 @@ namespace RCommerce.Tools.CopyClientApp
             }
             
             const string clientApp = "ClientApp";
-            var exludeDirs = new[] { "node_modules", "dist", "e2e", "_internal" };
+            var exludeDirs = new[] { "node_modules", "dist", "e2e"};
 
             //check if has clientApp folder, if not exists => copy template.
             var currentProjectClientAppPath = Path.Combine(projectPath, clientApp, "src");
@@ -89,6 +84,7 @@ namespace RCommerce.Tools.CopyClientApp
                 CopyWithRoboCopy(src, desc, exludeDirs);
             // }
 
+			exludeDirs = new[] { "node_modules", "dist", "e2e", "_internal" };
             var modulePath = Path.Combine(solutionPath, "modules");
             var modulesInProjectPath = Path.Combine(projectPath, "Modules");
             var moduleNamesInProject = Directory.GetFiles(modulesInProjectPath).Select(i => Path.GetFileNameWithoutExtension(i));

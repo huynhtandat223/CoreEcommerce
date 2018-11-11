@@ -21,8 +21,8 @@ namespace RCommerce.Module.Core.Extensions
         {
             services.AddDbContextPool<RDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly("RCommerce.Module.Authentication")));
-
+                    b => b.MigrationsAssembly("RCommerce.AppHost")));
+            services.AddTransient<DbContext>(s => s.GetService<RDbContext>());
             return services;
         }
         public static IServiceCollection AddModules(this IServiceCollection services, string contentRootPath)
