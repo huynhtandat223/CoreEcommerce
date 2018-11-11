@@ -6,9 +6,11 @@ using RCommerce.Module.Core.Controllers;
 using Infrastructures.RepositoryEntities.Data;
 using RCommerce.Module.Core.Dtos;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RCommerce.Module.Products.Controllers
 {
+    [Authorize]
     public class CategoriesController : GenericController<Category>
     {
         private readonly IMapper _mapper;
