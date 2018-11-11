@@ -7,6 +7,7 @@ using RCommerce.Module.Core.ActionFilters;
 using RCommerce.Module.Core.Data;
 using RCommerce.Module.Core.Entities;
 using RCommerce.Module.Core.Modules;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,22 @@ namespace RCommerce.Module.Core.Extensions
         public static IServiceCollection AddModules(this IServiceCollection services, string contentRootPath)
         {
             var modulesFolder = Path.Combine(contentRootPath, "Modules");
-            foreach (var module in _modulesConfig.GetModules(modulesFolder))
+            IEnumerable<ModuleInfo> moduleInfos = null;
+            if (!Directory.Exists(modulesFolder))
+            {
+                //add current assembly and core.
+                var currentAssembly = System.Reflection.Assembly.GetEntryAssembly();
+                var coreAssembly = System.Reflection.Assembly.Load("RCommerce.Module.Core");
+
+                moduleInfos = new[] {
+                    new ModuleInfo{ Assembly = coreAssembly, Name = coreAssembly.FullName, Version = Version.Parse("1.0")},
+                    new ModuleInfo{ Assembly = currentAssembly, Name = currentAssembly.FullName, Version = Version.Parse("1.0")},
+                };
+            }
+            else
+                moduleInfos = _modulesConfig.GetModules(modulesFolder);
+
+            foreach (var module in moduleInfos)
             {
                 GlobalConfiguration.Modules.Add(module);
                 RegisterModuleInitializerServices(module, ref services);

@@ -1,0 +1,7 @@
+{
+    "modules": [
+        { 
+            "name": "ProductsModule","folderName": "products"
+        }
+    ]
+}

@@ -30,8 +30,4 @@
     <TypeScriptCompile Include="ClientApp\src\app\_shared\appshared.service.ts" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet &quot;$(SolutionDir)tools\copymodules\RCommerce.Tools.CopyModules.dll&quot; $(ProjectDir) $(TargetDir)" />
-  </Target>
-
 </Project>

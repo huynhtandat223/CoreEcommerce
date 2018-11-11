@@ -3,7 +3,7 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:56610",
+      "applicationUrl": "http://localhost:55555",
       "sslPort": 0
     }
   },
@@ -18,7 +18,7 @@
     "CoreEcommerce.AppHost": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5000",
+      "applicationUrl": "http://localhost:55555",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

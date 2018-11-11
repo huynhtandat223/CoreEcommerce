@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,25 @@ namespace RCommerce.Tools.CopyClientApp
 {
     class Program
     {
+        private static void CopyWithRoboCopy(string src, string desc, IEnumerable<string> exludeDirs)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "robocopy.exe";
+            startInfo.Arguments = $"{src} {desc} /XO /NJH /NP /e /xd {string.Join(" ", exludeDirs)}";
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+            //startInfo.RedirectStandardError = true;
+            //startInfo.RedirectStandardOutput = true;
+            Process p = Process.Start(startInfo);
+            //Console.WriteLine(p.StandardError.ReadToEnd());
+            //Console.WriteLine(p.StandardOutput.ReadToEnd());
+
+            while (!p.HasExited)
+            {
+                System.Threading.Thread.Sleep(500);
+            }
+        }
+       
         private static void CopyModules(string src, string desc, IEnumerable<string> exludeDirs)
         {
             var validDirs = Directory.GetDirectories(src, "*", SearchOption.AllDirectories).Where(i => !exludeDirs.Any(exDir => i.Contains(exDir)));
@@ -38,41 +58,52 @@ namespace RCommerce.Tools.CopyClientApp
         static void Main(string[] args)
         {
             var projectPath = args[0];
-            var solutionPath = args[1];
+            //var projectPath = @"D:\works\CoreEcommerce\hosts\RCommerce.AppHost";
 
+            var solutionPath = args[1];
+            //var solutionPath = @"D:\works\CoreEcommerce";
+
+            var targetDir = args[2];
+
+            var modulesFolder = Path.Combine(projectPath, "Modules");
+            if (!Directory.Exists(modulesFolder)) Directory.CreateDirectory(modulesFolder);
+
+            var moduleNames = Directory.GetFiles(targetDir, "*.Module.*.dll").Select(i => Path.GetFileName(i));
+            foreach (var moduleName in moduleNames)
+            {
+                var _desc = Path.Combine(projectPath, "Modules", moduleName);
+                var _src = Path.Combine(targetDir, moduleName);
+                File.Copy(_src, _desc, true);
+            }
+            
             const string clientApp = "ClientApp";
-            var exludeDirs = new[] { "node_modules", "dist", "e2e" };
+            var exludeDirs = new[] { "node_modules", "dist", "e2e", "_internal" };
 
             //check if has clientApp folder, if not exists => copy template.
             var currentProjectClientAppPath = Path.Combine(projectPath, clientApp, "src");
-            if (!Directory.Exists(currentProjectClientAppPath))
-            {
+            //if (!Directory.Exists(currentProjectClientAppPath))
+            //{
                 var templatePath = Path.Combine(solutionPath, "templates", clientApp);
                 var src = templatePath;
                 var desc = Path.Combine(projectPath, clientApp);
-                CopyModules(src, desc, exludeDirs);
+                CopyWithRoboCopy(src, desc, exludeDirs);
+            // }
+
+            var modulePath = Path.Combine(solutionPath, "modules");
+            var modulesInProjectPath = Path.Combine(projectPath, "Modules");
+            var moduleNamesInProject = Directory.GetFiles(modulesInProjectPath).Select(i => Path.GetFileNameWithoutExtension(i));
+
+            foreach (var moduleName in moduleNamesInProject)
+            {
+                var clientModuleName = moduleName.Split(".").Last().ToLower();
+                var srcModule = Path.Combine(solutionPath, "modules", moduleName, clientApp, "src", "app", clientModuleName);
+                if (!Directory.Exists(srcModule)) continue;
+
+                var descModule = Path.Combine(projectPath, clientApp, "src", "app", clientModuleName);
+
+                CopyWithRoboCopy(srcModule, descModule, exludeDirs);
             }
 
-            var srcModule = Path.Combine(solutionPath, "modules", "RCommerce.Module.Authentication", clientApp, "src", "app", "authentication");
-            var descModule = Path.Combine(projectPath, clientApp, "src", "app", "authentication");
-            CopyModules(srcModule, descModule, exludeDirs);
-
-            //var modulePath = Path.Combine(solutionPath, "modules");
-            //var modulesInProjectPath = Path.Combine(projectPath, "Modules");
-            //var moduleNamesInProject = Directory.GetFiles(modulesInProjectPath).Select(i => Path.GetFileNameWithoutExtension(i));
-
-            //Parallel.ForEach(moduleNamesInProject, moduleName =>
-            //{
-            //    var clientAppPath = Path.Combine(modulePath, moduleName, clientApp);
-
-            //    foreach (string dirPath in Directory.GetDirectories(clientAppPath, "*", SearchOption.AllDirectories))
-            //        Directory.CreateDirectory(dirPath.Replace(clientAppPath, currentProjectClientAppPath));
-
-            //    //Copy all the files & Replaces any files with the same name
-            //    foreach (string newPath in Directory.GetFiles(clientAppPath, "*.*",
-            //        SearchOption.AllDirectories))
-            //        File.Copy(newPath, newPath.Replace(clientAppPath, currentProjectClientAppPath), true);
-            //});
         }
     }
 }

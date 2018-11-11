@@ -1,0 +1,16 @@
+<div id="wrapper">
+  <navigation *ngIf="isLogined" ></navigation>
+
+  <div id="page-wrapper" class="gray-bg" [class.ml-0]="!isLogined">
+
+    <topnavbar *ngIf="isLogined" ></topnavbar>
+
+    <router-outlet></router-outlet>
+
+    <div class="footer">
+      <div>
+        <!-- <strong>Copyright</strong> Andrew &copy; 2017 -->
+      </div>
+    </div>
+  </div>
+</div>
