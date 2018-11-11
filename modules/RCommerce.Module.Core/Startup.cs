@@ -3,6 +3,7 @@ using Infrastructures.RepositoryEntities.Data;
 using Infrastructures.RepositoryEntities.EfRepositories;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OData.Edm;
 using RCommerce.Module.Core.Extensions;
 using RCommerce.Module.Core.Modules;
+using System.Security.Claims;
 
 namespace RCommerce.Module.Core
 {
@@ -56,12 +58,19 @@ namespace RCommerce.Module.Core
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
                         .AllowAnyOrigin().AllowCredentials());
+            
+            var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
+            foreach (var moduleInitializer in moduleInitializers)
+            {
+                moduleInitializer.Configure(app, env);
+            }
 
             app.UseMvc(b =>
             {
@@ -72,7 +81,6 @@ namespace RCommerce.Module.Core
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            app.UseHttpsRedirection();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -82,12 +90,6 @@ namespace RCommerce.Module.Core
                 }
             });
 
-            var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
-            foreach (var moduleInitializer in moduleInitializers)
-            {
-                moduleInitializer.Configure(app, env);
-            }
-            
         }
         private static IEdmModel GetEdmModel(IApplicationBuilder app)
         {

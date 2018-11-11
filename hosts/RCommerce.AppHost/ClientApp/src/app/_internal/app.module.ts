@@ -10,7 +10,7 @@ import {RouterModule, Route} from "@angular/router";
 import {HomeComponent} from "../static/pages/home/home.component";
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpErrorHandler } from '../static/services/http-error-handler.service';
 import { MessageService } from '../static/services//message.service';
 import { LayoutModule } from '@progress/kendo-angular-layout';
@@ -18,6 +18,7 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { AppLoadService } from '../static/services/appload.service';
 import { AuthGuard } from '../_shared/AuthGuard';
 import { AppSharedService } from '../_shared/appshared.service';
+import { JwtInterceptor, ErrorInterceptor } from '../authentication/_helpers';
 
 const appRoutes: Route[] = [
   {
@@ -57,9 +58,12 @@ export function init_app(appLoadService: AppLoadService){
   providers: [
     AppLoadService,
     { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppLoadService], multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     HttpErrorHandler,
     MessageService,
-    AppSharedService
+    AppSharedService,
+
   ],
   bootstrap: [AppComponent]
 })
